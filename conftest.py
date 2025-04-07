@@ -9,7 +9,7 @@ from utilities.config_reader import ConfigReader
 def driver():
     print("\n[Setup] Starting the browser...")
     driver = BrowserManager.get_driver()
-    timeout = ConfigReader.getint('DEFAULT', 'timeout')
+    timeout = ConfigReader.getint('pytest', 'timeout')
     driver.implicitly_wait(timeout)
     driver.get(ConfigReader.get("DEFAULT", "base_url"))
     yield driver

@@ -3,9 +3,10 @@ import sys
 import os
 from utilities.config_reader import ConfigReader
 
+
 def run():
     # Default test target
-    test_target = ConfigReader.get('DEFAULT',"testpaths")
+    test_target = ConfigReader.get('pytest', "testpaths")
 
     # If a specific test file or path is passed as argument
     if len(sys.argv) > 1:
@@ -14,7 +15,7 @@ def run():
     # Ensure reports folder exists
     os.makedirs("reports", exist_ok=True)
 
-    parallel_threads = ConfigReader.get('DEFAULT', 'parallel_threads')
+    parallel_threads = ConfigReader.get('pytest', 'parallel_threads')
 
     # Run pytest with desired options
     pytest_args = [
@@ -26,6 +27,7 @@ def run():
     ]
 
     pytest.main(pytest_args)
+
 
 if __name__ == "__main__":
     run()

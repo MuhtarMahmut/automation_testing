@@ -8,7 +8,7 @@ from utilities.config_reader import ConfigReader
 
 class WaitUtils:
     driver = BrowserManager.get_driver()
-    timeout = ConfigReader.getint('DEFAULT', 'timeout')
+    timeout = ConfigReader.getint('pytest', 'timeout')
 
     @classmethod
     def wait_for_title(cls, title_text):

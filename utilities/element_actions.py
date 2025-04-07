@@ -8,7 +8,7 @@ from utilities.config_reader import ConfigReader
 
 class ElementActions:
     driver = BrowserManager.get_driver()
-    timeout = ConfigReader.getint("DEFAULT", "timeout")
+    timeout = ConfigReader.getint("pytest", "timeout")
 
     @classmethod
     def click(cls, locator):
