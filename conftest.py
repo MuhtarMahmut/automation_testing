@@ -13,10 +13,10 @@ def driver():
     driver.get(ConfigReader.get_config('Default', 'url'))
     timeout = ConfigReader.get_config('Default', 'timeout')
     driver.implicitly_wait(timeout)
-
     LoginPage().login() # login step
 
     yield driver
+
     print("\n[Teardown] Quitting the browser...")
     BrowserManager.quit_driver()
 

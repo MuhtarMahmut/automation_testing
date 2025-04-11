@@ -4,7 +4,7 @@ import configparser
 class ConfigReader:
 
     @staticmethod
-    def get_config(section: str ,key: str):
+    def get_config(section: str, key: str):
         config = configparser.ConfigParser()
         config.read('config.ini')
         return config.get(section, key)

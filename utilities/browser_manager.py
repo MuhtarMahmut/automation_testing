@@ -9,6 +9,7 @@ class BrowserManager:
 
     @classmethod
     def get_driver(cls):
+
         if not cls._driver:
             browser = ConfigReader.get_config('Default', 'browser').lower()
             headless = ConfigReader.get_config('Default', 'headless').lower()
