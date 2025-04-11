@@ -1,10 +1,10 @@
 import pytest
 import sys
 import os
-
 from utilities.config_reader import ConfigReader
 
-SPECIFIC_TEST_FILE = "home_test.py"  # fileName.py or None
+
+SPECIFIC_TEST_FILE = None  # fileName.py or None
 SPECIFIC_TEST = None  # fileName.py::testFunctionName or None
 TAG = None  # tagName or None
 WORKERS = 1  # 1 or greater number

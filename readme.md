@@ -105,7 +105,6 @@ markers =
 |----------------------------|------------------------------------------------------|
 | `browser_manager.py`       | Manages WebDriver using singleton pattern            |
 | `browser_utilities.py`     | Browser-level actions (scrolling, tabs, alerts, etc.)|
-| `wait_utils.py`            | Centralized explicit wait logic                      |
 | `excel_utilities.py`       | Read/write Excel test data using `openpyxl`          |
 | `json_utilities.py`        | JSON file utilities for test data or configs         |
 | `config_reader.py`         | Loads `.ini` configurations and environment variables|
@@ -137,7 +136,7 @@ markers =
 
 ## 👨‍💻 Maintainer
 
-Developed and maintained by - [<b>CYDEO Bug Busters<b>](https://cydeo.com/program/java-sdet/).
+Developed and maintained by - [<b>Bug Busters Of CYDEO<b>](https://cydeo.com/program/java-sdet/).
 
 ---
 
