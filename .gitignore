@@ -1,7 +1,5 @@
-/.venv/
-*.iml
-.idea
+/*.iml
+/.*
 /reports
 /screenshots
-
-/credentials.ini
+/env.ini

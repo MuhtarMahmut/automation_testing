@@ -1,31 +1,44 @@
 import pytest
 import sys
 import os
+
 from utilities.config_reader import ConfigReader
+
+SPECIFIC_TEST_FILE = "home_test.py"  # fileName.py or None
+SPECIFIC_TEST = None  # fileName.py::testFunctionName or None
+TAG = None  # tagName or None
+WORKERS = 1  # 1 or greater number
+RETRIES = 0  # 0 or greater number
 
 
 def run():
-    # Default test target
-    test_target = ConfigReader.get('pytest', "testpaths")
+    os.makedirs("reports", exist_ok=True)
 
-    # If a specific test file or path is passed as argument
+    test_target = f"./{ConfigReader.get_pytest('pytest','testpaths')}"
+
+    if SPECIFIC_TEST and SPECIFIC_TEST_FILE:
+        raise RuntimeError("Invalid Test(s) Path selected")
+    elif SPECIFIC_TEST_FILE:
+        test_target += f"/{SPECIFIC_TEST_FILE}"
+    elif SPECIFIC_TEST:
+        test_target += f"/{SPECIFIC_TEST}"
+
     if len(sys.argv) > 1:
         test_target = sys.argv[1]
 
-    # Ensure reports folder exists
-    os.makedirs("reports", exist_ok=True)
-
-    parallel_threads = ConfigReader.get('pytest', 'parallel_threads')
-
-    # Run pytest with desired options
     pytest_args = [
         test_target,
         "--html=reports/report.html",
         "--self-contained-html",
-        "-n", parallel_threads,  # parallel execution
-        "-v"
+        "-n", str(WORKERS),
+        "-v",
+        "--reruns", str(RETRIES)
     ]
 
+    if TAG:
+        pytest_args += ["-m", TAG]
+
+    # Run pytest
     pytest.main(pytest_args)
 
 

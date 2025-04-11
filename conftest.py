@@ -1,6 +1,7 @@
-import pytest
 import os
 from datetime import datetime
+import pytest
+from pages.login_page import LoginPage
 from utilities.browser_manager import BrowserManager
 from utilities.config_reader import ConfigReader
 
@@ -9,13 +10,15 @@ from utilities.config_reader import ConfigReader
 def driver():
     print("\n[Setup] Starting the browser...")
     driver = BrowserManager.get_driver()
-    timeout = ConfigReader.getint('pytest', 'timeout')
+    driver.get(ConfigReader.get_config('Default', 'url'))
+    timeout = ConfigReader.get_config('Default', 'timeout')
     driver.implicitly_wait(timeout)
-    driver.get(ConfigReader.get("DEFAULT", "base_url"))
+
+    LoginPage().login() # login step
+
     yield driver
     print("\n[Teardown] Quitting the browser...")
     BrowserManager.quit_driver()
-
 
 
 def pytest_runtest_setup(item):

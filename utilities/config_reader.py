@@ -2,13 +2,21 @@ import configparser
 
 
 class ConfigReader:
-    config = configparser.ConfigParser()
-    config.read('config.ini')
 
     @staticmethod
-    def get(section, key):
-        return ConfigReader.config.get(section, key)
+    def get_config(section: str ,key: str):
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        return config.get(section, key)
 
     @staticmethod
-    def getint(section, key):
-        return ConfigReader.config.getint(section, key)
+    def get_env(section, key):
+        env = configparser.ConfigParser()
+        env.read('env.ini')
+        return env.get(section, key)
+
+    @staticmethod
+    def get_pytest(section, key: str = ""):
+        pyt = configparser.ConfigParser()
+        pyt.read('pytest.ini')
+        return pyt.get(section, key)
